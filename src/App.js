@@ -1,12 +1,11 @@
 import './App.css';
-import ButtonComponent from './components/Button/ButtonComponent';
-import SearchComponent from './components/Search/SearchComponent';
+import Navbar from './components/NavBar/Navbar';
+
 
 function App() {
   return (
     <div className="App">
-      <ButtonComponent>Give feedback</ButtonComponent>
-      <SearchComponent placeholder='Search for your favourite song'/>  
+      <Navbar/>
     </div>
   );
 }
