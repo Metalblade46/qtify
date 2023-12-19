@@ -1,4 +1,3 @@
-import { Box } from '@mui/material'
 import React from 'react'
 import { ReactComponent as SearchIcon } from '../../assets/Search icon.svg'
 import styles from './Search.module.css'
