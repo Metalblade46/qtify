@@ -1,17 +1,13 @@
-import { ThemeProvider } from '@emotion/react';
 import './App.css';
-import ButtonComponent from './components/ButtonComponent';
-import theme from './theme';
-import SearchComponent from './components/SearchComponent';
+import ButtonComponent from './components/Button/ButtonComponent';
+import SearchComponent from './components/Search/SearchComponent';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
     <div className="App">
-      <ButtonComponent/>
-      <SearchComponent/>  
+      <ButtonComponent>Give feedback</ButtonComponent>
+      <SearchComponent placeholder='Search for your favourite song'/>  
     </div>
-    </ThemeProvider>
   );
 }
 
