@@ -2,7 +2,7 @@ import React from 'react'
 import { ReactComponent as SearchIcon } from '../../assets/Search icon.svg'
 import styles from './Search.module.css'
 
-const SearchComponent = ({placeholder}) => {
+const SearchComponent = ({placeholder,searchData}) => {
   const handleSubmit=(e)=>{
     e.preventDefault(); 
   }
