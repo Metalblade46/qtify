@@ -1,0 +1,38 @@
+.wrapper{
+    width: 160px;
+}
+.card{
+    width: 159px;
+    height: 205px;
+    background-color: var(--color-white);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.card_img{
+width: 100%;
+height: 170px;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+}
+.hug{
+    background-color: var(--color-black);
+    width: 71px;
+    height: 23px;
+    border-radius: 10px;
+    padding: 4px 8px;
+    margin-left: 5px;
+    margin-top: 6px;
+    font-size: 10px;
+    text-align: center;
+}
+.title{
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.chip{
+    color: var(--color-white)!important;
+    background-color: var(--color-black)!important;
+}
