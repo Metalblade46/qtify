@@ -10,6 +10,7 @@ function App() {
     <div className="App">
       <Navbar searchdata={""}/>
       <Hero/>
+      <Section type='top'/>
      <Section type='new'/>
     </div>
   );
