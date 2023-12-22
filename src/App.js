@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Navbar searchdata={""}/>
       <Hero/>
-     <Section/>
+     <Section type='new'/>
     </div>
   );
 }
