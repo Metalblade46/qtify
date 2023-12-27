@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Stack, Typography, Grid, CircularProgress } from '@mui/material'
+import { Button, Stack, Typography, Grid, CircularProgress, Box } from '@mui/material'
 import Styles from './Section.module.css'
 import Card from '../Card/Card';
 import Carousel from '../Carousel/Carousel';
@@ -24,7 +24,9 @@ const Section = ({title,data,type}) => {
                 <Button sx={{ color: '#34c94b', fontSize: '20px', fontWeight: '600', textTransform: 'none' }} onClick={handletoggle}>{carouselToggle?'Collapse':'Show All'}</Button>
             </Stack>
             {
-                data.length===0 ? <CircularProgress/>
+                data.length===0 ? <Box display='flex' justifyContent='center'>
+                    <CircularProgress />
+                </Box>
                 : <div className={Styles.grid_wrapper}>
                     {carouselToggle?(
                         <Grid container spacing={8} justifyContent="start">
