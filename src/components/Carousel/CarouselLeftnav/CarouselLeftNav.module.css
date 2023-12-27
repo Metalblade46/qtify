@@ -1,0 +1,8 @@
+.LeftNavigation{
+    position: absolute;
+    left: 0px;
+    top: 40%;
+    z-index: 10;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

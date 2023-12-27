@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Stack, Typography, Grid } from '@mui/material'
+import React, { useState } from 'react'
+import { Button, Stack, Typography, Grid, CircularProgress } from '@mui/material'
 import Styles from './Section.module.css'
 import Card from '../Card/Card';
-import axios from 'axios';
-const Section = ({type}) => {
-    const [ albums, setAlbums ] = useState([]);
-    
-    useEffect(()=>{
-        const fetchData= async()=>{ 
-            try{
-                const {data} = await axios.get(`https://qtify-backend-labs.crio.do/albums/${type=='top'?'top':'new'}`);
-                console.log(data);
-                setAlbums(data);
-            }catch(err){
-                console.log(err)
-            }
-        }
-        fetchData();
-    },[])
+import Carousel from '../Carousel/Carousel';
+const Section = ({title,data,type}) => {
+    const [carouselToggle, setCarouseltoggle] = useState(false);
+    const handletoggle = ()=>{
+        setCarouseltoggle(prev=>!prev);
+    }
+    const renderComponent = (data)=>{
+        return <Card data={data} type={type}/> 
+    }
 
     return (
         <div className={Styles.wrapper}>
@@ -27,23 +20,34 @@ const Section = ({type}) => {
                 alignItems="center"
                 mb='10px'
             >
-                <Typography sx={{ fontSize: '20px', fontWeight: '600' }}>{type=='top'?'Top':'New'} Albums</Typography>
-                <Button sx={{ color: '#34c94b', fontSize: '20px', fontWeight: '600', textTransform: 'none' }}>Collapse</Button>
+                <Typography sx={{ fontSize: '20px', fontWeight: '600' }}>{title}</Typography>
+                <Button sx={{ color: '#34c94b', fontSize: '20px', fontWeight: '600', textTransform: 'none' }} onClick={handletoggle}>{carouselToggle?'Collapse':'Show All'}</Button>
             </Stack>
-            <div className={Styles.grid_wrapper}>
-                <Grid container spacing={8} justifyContent="start">
+            {
+                data.length===0 ? <CircularProgress/>
+                : <div className={Styles.grid_wrapper}>
+                    {carouselToggle?(
+                        <Grid container spacing={8} justifyContent="start">
                     {
-                        albums && albums.map(album => {
-                            console.log(album.id)
+                        data.map(ele => {
                             return (
-                                <Grid item >
-                                    <Card data={album} type='album'/>
+                                <Grid item  key={ele.id}>
+                                    <Card data={ele} type={type}/>
                                 </Grid>
                             )
                         })
                     }
                 </Grid>
+                    ):(
+                        <Carousel 
+                        data={data} 
+                        renderComponent={renderComponent}    
+                        />
+                    )}
+                
             </div>
+            }
+            
         </div>
     )
 }

@@ -1,18 +1,34 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
-import Card from './components/Card/Card';
-import Hero from './components/Hero/Hero';
 import Navbar from './components/NavBar/Navbar';
-import Section from './components/Section/Section';
-
+import { StyledEngineProvider } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { fetchGenres, fetchNewAlbums, fetchSongs, fetchTopAlbums } from './api/api'
 
 function App() {
+  const [searchdata,setSearchData] = useState();
+  const [data, setData] = useState({})
+  const generateData= (key,source)=>{
+    source().then(data=>{
+      setData(prevData=>{
+        return {...prevData, [key] : data}
+      })
+    })
+  }
+  useEffect(()=>{
+    generateData('topAlbums',fetchTopAlbums);
+    generateData('newAlbums',fetchNewAlbums);
+    generateData('songs',fetchSongs);
+    generateData('genres',fetchGenres);
+  },[])
+  const {topAlbums=[], newAlbums=[], songs=[]} = data;
   return (
-    <div className="App">
-      <Navbar searchdata={""}/>
-      <Hero/>
-      <Section type='top'/>
-     <Section type='new'/>
-    </div>
+    <StyledEngineProvider injectFirst>
+      <div className="App">
+        <Navbar searchdata={[...topAlbums,...newAlbums]}/>
+        <Outlet context={{data: {topAlbums,newAlbums,songs}}}/>
+      </div>
+    </StyledEngineProvider>
   );
 }
 
