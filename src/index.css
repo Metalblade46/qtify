@@ -49,3 +49,7 @@ h6{
 .swiper-slide{
   width: auto!important;
 }
+hr{
+  border:1px solid var(--color-primary);
+  margin-bottom: 10px;
+}

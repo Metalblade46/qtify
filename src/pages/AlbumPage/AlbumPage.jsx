@@ -1,8 +1,10 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 const AlbumPage = () => {
+  const params = useParams();
   return (
-    <div>AlbumPage</div>
+    <div>{params.albumId}</div>
   )
 }
 
